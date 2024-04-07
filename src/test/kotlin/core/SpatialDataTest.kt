@@ -5,6 +5,7 @@ import graphics.noise.perlin.core.point.SpatialData1D
 import graphics.noise.perlin.core.point.SpatialData2D
 import graphics.noise.perlin.core.point.SpatialData3D
 import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class SpatialDataTest {
@@ -24,5 +25,20 @@ class SpatialDataTest {
     fun `should return x, y, z value in array`() {
         val spatialData3D: SpatialData = SpatialData3D(x = 1, y = 2, z = 3)
         assertArrayEquals(arrayOf(1, 2, 3), spatialData3D.data)
+    }
+
+    @Test
+    fun `should return SpatialData1D`() {
+        assertEquals(SpatialData1D(x = 1), SpatialData.spatialDataFactory(listOf(1)))
+    }
+
+    @Test
+    fun `should return SpatialData2D`() {
+        assertEquals(SpatialData2D(x = 1, y = 2), SpatialData.spatialDataFactory(listOf(1, 2)))
+    }
+
+    @Test
+    fun `should return SpatialData3D`() {
+        assertEquals(SpatialData3D(x = 1, y = 2, z = 3), SpatialData.spatialDataFactory(listOf(1, 2, 3)))
     }
 }
