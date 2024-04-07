@@ -2,11 +2,8 @@ package core
 
 import graphics.noise.perlin.core.point.SpatialData1D
 import graphics.noise.perlin.core.space.Space
-import graphics.noise.perlin.core.space.Space2D
 import graphics.noise.perlin.core.point.SpatialData2D
 import graphics.noise.perlin.core.point.SpatialData3D
-import graphics.noise.perlin.core.space.Space1D
-import graphics.noise.perlin.core.space.Space3D
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -14,13 +11,13 @@ class SpaceTest {
 
     @Test
     fun `should return all points in 1D space`() {
-        val space: Space = Space1D(SpatialData1D(x = 5), SpatialData1D(x = 10))
+        val space = Space(SpatialData1D(x = 5), SpatialData1D(x = 10))
         assertEquals(listOf(listOf(10), listOf(11), listOf(12), listOf(13), listOf(14)), space.points())
     }
 
     @Test
     fun `should return all points in the 2D space`() {
-        val space: Space = Space2D(
+        val space = Space(
             dimension = SpatialData2D(x = 3, y = 5),
             position = SpatialData2D(x = 10, y = 5)
         )
@@ -45,7 +42,7 @@ class SpaceTest {
 
     @Test
     fun `should return all points in 3D space`() {
-        val space: Space = Space3D(
+        val space = Space(
             dimension = SpatialData3D(x = 2, y = 3, z = 4),
             position = SpatialData3D(x = 1, y = 1, z = 1)
         )

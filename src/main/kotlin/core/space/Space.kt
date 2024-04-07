@@ -2,10 +2,10 @@ package graphics.noise.perlin.core.space
 
 import graphics.noise.perlin.core.point.SpatialData
 
-abstract class Space {
-    abstract val dimension: SpatialData
-    abstract val position: SpatialData
-
+data class Space(
+    val dimension: SpatialData,
+    val position: SpatialData
+) {
     fun points(): List<List<Int>> {
         return points(0, emptyList())
     }
