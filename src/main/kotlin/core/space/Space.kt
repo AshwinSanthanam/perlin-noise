@@ -1,6 +1,6 @@
-package graphics.noise.perlin.core.space
+package core.space
 
-import graphics.noise.perlin.core.point.SpatialData
+import core.point.SpatialData
 
 data class Space<T> (
     val dimension: T,

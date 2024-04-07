@@ -1,4 +1,4 @@
-package graphics.noise.perlin.core.point
+package core.point
 
 interface SpatialData {
     val data: Array<Int>

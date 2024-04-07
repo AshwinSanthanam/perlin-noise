@@ -1,9 +1,9 @@
 package core
 
-import graphics.noise.perlin.core.point.SpatialData1D
-import graphics.noise.perlin.core.space.Space
-import graphics.noise.perlin.core.point.SpatialData2D
-import graphics.noise.perlin.core.point.SpatialData3D
+import core.point.SpatialData1D
+import core.space.Space
+import core.point.SpatialData2D
+import core.point.SpatialData3D
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

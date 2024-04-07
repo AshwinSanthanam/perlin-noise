@@ -1,4 +1,4 @@
-package graphics.noise.perlin.core.point
+package core.point
 
 data class SpatialData1D(
     val x: Int

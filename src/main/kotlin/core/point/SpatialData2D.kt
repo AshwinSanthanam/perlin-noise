@@ -1,4 +1,4 @@
-package graphics.noise.perlin.core.point
+package core.point
 
 data class SpatialData2D(
     val x: Int,
