@@ -12,7 +12,7 @@ class SpaceTest {
     @Test
     fun `should return all points in 1D space`() {
         val space = Space(SpatialData1D(x = 5), SpatialData1D(x = 10))
-        assertEquals(listOf(SpatialData1D(x = 10), SpatialData1D(x = 11), SpatialData1D(x = 12), SpatialData1D(x = 13), SpatialData1D(x = 14)), space.points())
+        assertEquals(listOf(SpatialData1D(x = 10), SpatialData1D(x = 11), SpatialData1D(x = 12), SpatialData1D(x = 13), SpatialData1D(x = 14)), space.points)
     }
 
     @Test
@@ -37,7 +37,7 @@ class SpaceTest {
             SpatialData2D(x = 12, y = 7),
             SpatialData2D(x = 12, y = 8),
             SpatialData2D(x = 12, y = 9)
-        ), space.points())
+        ), space.points)
     }
 
     @Test
@@ -72,7 +72,7 @@ class SpaceTest {
                 SpatialData3D(x = 2, y = 3, z = 2),
                 SpatialData3D(x = 2, y = 3, z = 3),
                 SpatialData3D(x = 2, y = 3, z = 4)
-            ), space.points()
+            ), space.points
         )
     }
 }
