@@ -6,7 +6,6 @@ data class Space<T> (val dimension: T) where T : SpatialData {
 
     val points get() = Points.generate(dimension)
 
-    val boundaries get() = boundaries()
+    val boundaries get() = Boundary.generate(dimension)
 
-    private fun boundaries(): List<T> = Boundary.generate(dimension)
 }
