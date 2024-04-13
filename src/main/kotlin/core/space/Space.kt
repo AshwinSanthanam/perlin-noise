@@ -7,11 +7,11 @@ data class Space<T> (
     val position: T
 ) where T : SpatialData {
 
-    val points = points(0, emptyList())
+    val points by lazy { points(0, emptyList()) }
 
-    val boundaries: List<T> = boundaries()
+    val boundaries by lazy { boundaries() }
 
-    private val size get() = dimension.data.size
+    private val size by lazy { dimension.data.size }
 
     private fun points(axis: Int, coordinates: List<Int>): List<T> {
         if (axis >= dimension.data.size) return listOf(SpatialData.spatialDataFactory(coordinates))
