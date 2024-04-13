@@ -1,7 +1,6 @@
 package core
 
 import core.point.SpatialData1D
-import core.space.Space
 import core.point.SpatialData2D
 import core.point.SpatialData3D
 import org.junit.jupiter.api.Assertions.assertEquals
