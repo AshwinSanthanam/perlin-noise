@@ -4,7 +4,7 @@ import core.point.SpatialData1D
 import core.space.Space
 import core.point.SpatialData2D
 import core.point.SpatialData3D
-import core.space.RawBoundary
+import core.space.Boundary
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -14,7 +14,7 @@ class SpaceTest {
     @Nested
     inner class PointsTest {
         @Test
-        fun `should return all points in 1D space`() {
+        fun `should return all points in the 1D space`() {
             val space = Space(dimension = SpatialData1D(x = 5))
             assertEquals(listOf(SpatialData1D(x = 0), SpatialData1D(x = 1), SpatialData1D(x = 2), SpatialData1D(x = 3), SpatialData1D(x = 4)), space.points)
         }
@@ -42,7 +42,7 @@ class SpaceTest {
         }
 
         @Test
-        fun `should return all points in 3D space`() {
+        fun `should return all points in the 3D space`() {
             val space = Space(dimension = SpatialData3D(x = 2, y = 3, z = 4))
             assertEquals(
                 listOf(
@@ -73,6 +73,21 @@ class SpaceTest {
                 ), space.points
             )
         }
+
+        @Test
+        fun `points cache test`() {
+            repeat(2) {
+                `should return all points in the 1D space`()
+            }
+
+            repeat(2) {
+                `should return all points in the 2D space`()
+            }
+
+            repeat(2) {
+                `should return all points in the 3D space`()
+            }
+        }
     }
 
     @Nested
@@ -95,7 +110,7 @@ class SpaceTest {
         }
 
         @Test
-        fun `should return all the boundaries in 3D space`() {
+        fun `should return all the boundaries of 3D space`() {
             val space = Space(dimension = SpatialData3D(x = 3, y = 5, z = 4))
             assertEquals(
                 listOf(
@@ -110,61 +125,20 @@ class SpaceTest {
                 ), space.boundaries
             )
         }
-    }
-
-    @Nested
-    inner class RawBoundaryTest {
-        @Test
-        fun `should return the respective raw boundary for 1 dimension`() {
-            assertEquals(listOf(listOf(false), listOf(true)), RawBoundary.generate(1))
-        }
 
         @Test
-        fun `should return the respective raw boundary for 2 dimension`() {
-            assertEquals(listOf(
-                listOf(false, false),
-                listOf(false, true),
-                listOf(true, false),
-                listOf(true, true),
-            ), RawBoundary.generate(2))
-        }
-
-        @Test
-        fun `should return the respective raw boundary for 3 dimension`() {
-            assertEquals(listOf(
-                listOf(false, false, false),
-                listOf(false, false, true),
-                listOf(false, true, false),
-                listOf(false, true, true),
-                listOf(true, false, false),
-                listOf(true, false, true),
-                listOf(true, true, false),
-                listOf(true, true, true)
-            ), RawBoundary.generate(3))
-        }
-
-        @Test
-        fun `raw boundary cache test`() {
+        fun `boundary cache test`() {
             repeat(2) {
-                assertEquals(listOf(listOf(false), listOf(true)), RawBoundary.generate(1))
+                `should return all the boundaries of 1D space`()
             }
 
             repeat(2) {
-                assertEquals(listOf(
-                    listOf(false, false),
-                    listOf(false, true),
-                    listOf(true, false),
-                    listOf(true, true),
-                ), RawBoundary.generate(2))
+                `should return all the boundaries of 2D space`()
             }
 
-            assertEquals(listOf(listOf(false), listOf(true)), RawBoundary.generate(1))
-            assertEquals(listOf(
-                listOf(false, false),
-                listOf(false, true),
-                listOf(true, false),
-                listOf(true, true),
-            ), RawBoundary.generate(2))
+            repeat(2) {
+                `should return all the boundaries of 3D space`()
+            }
         }
     }
 }
