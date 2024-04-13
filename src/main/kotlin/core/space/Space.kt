@@ -1,4 +1,4 @@
-package core
+package core.space
 
 import core.point.SpatialData
 
