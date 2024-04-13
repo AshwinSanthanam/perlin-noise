@@ -1,5 +1,21 @@
 package core.space
 
+import core.point.SpatialData
+
+internal object Points {
+    private val pointsMap = HashMap<SpatialData, List<SpatialData>>()
+
+    fun generate(dimension: SpatialData): List<SpatialData> =
+        pointsMap[dimension] ?: generate(dimension = dimension, axis = 0, coordinates = emptyList()).also { pointsMap[dimension] = it }
+
+    private fun generate(dimension: SpatialData, axis: Int, coordinates: List<Int>): List<SpatialData> =
+        if (axis >= dimension.data.size) listOf(SpatialData.factory(coordinates))
+        else (0 ..< dimension.data[axis]).flatMap {
+            generate(dimension = dimension, axis = axis + 1, coordinates = coordinates + it)
+        }
+}
+
+
 internal object RawBoundary {
     private val rawBoundaryMap = HashMap<Int, RawBoundaryType>()
 
