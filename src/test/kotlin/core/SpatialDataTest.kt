@@ -29,16 +29,16 @@ class SpatialDataTest {
 
     @Test
     fun `should return SpatialData1D`() {
-        assertEquals(SpatialData1D(x = 1), SpatialData.spatialDataFactory(listOf(1)))
+        assertEquals(SpatialData1D(x = 1), SpatialData.factory(listOf(1)))
     }
 
     @Test
     fun `should return SpatialData2D`() {
-        assertEquals(SpatialData2D(x = 1, y = 2), SpatialData.spatialDataFactory(listOf(1, 2)))
+        assertEquals(SpatialData2D(x = 1, y = 2), SpatialData.factory(listOf(1, 2)))
     }
 
     @Test
     fun `should return SpatialData3D`() {
-        assertEquals(SpatialData3D(x = 1, y = 2, z = 3), SpatialData.spatialDataFactory(listOf(1, 2, 3)))
+        assertEquals(SpatialData3D(x = 1, y = 2, z = 3), SpatialData.factory(listOf(1, 2, 3)))
     }
 }

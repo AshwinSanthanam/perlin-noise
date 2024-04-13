@@ -5,7 +5,7 @@ interface SpatialData {
 
     companion object {
         @Suppress("UNCHECKED_CAST")
-        fun <T> spatialDataFactory(data: List<Int>): T where T : SpatialData {
+        fun <T> factory(data: List<Int>): T where T : SpatialData {
             return when (data.size) {
                 1 -> SpatialData1D(x = data[0])
                 2 -> SpatialData2D(x = data[0], y = data[1])

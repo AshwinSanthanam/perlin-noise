@@ -13,12 +13,11 @@ data class Space<T> (
 
     private val size by lazy { dimension.data.size }
 
-    private fun points(axis: Int, coordinates: List<Int>): List<T> {
-        if (axis >= dimension.data.size) return listOf(SpatialData.spatialDataFactory(coordinates))
-        return (0 ..< dimension.data[axis]).flatMap {
-            points(axis + 1, coordinates + (it + position.data[axis]))
+    private fun points(axis: Int, coordinates: List<Int>): List<T> =
+        if (axis >= dimension.data.size) listOf(SpatialData.factory(coordinates))
+        else (0 ..< dimension.data[axis]).flatMap {
+            points(axis = axis + 1, coordinates = coordinates + (it + position.data[axis]))
         }
-    }
 
     private fun boundaries(): List<T> = RawBoundary.generate(size)
         .map { rawBoundary -> rawBoundary
@@ -32,26 +31,23 @@ data class Space<T> (
             .zip(position.data)
             .map { it.first + it.second }
         }
-        .map { SpatialData.spatialDataFactory(it) }
+        .map { SpatialData.factory(it) }
 }
 
 internal object RawBoundary {
     private val rawBoundaryMap = HashMap<Int, RawBoundaryType>()
 
-    fun generate(dimensions: Int): RawBoundaryType {
-        return if (!rawBoundaryMap.containsKey(dimensions)) {
-            rawBoundaryInternal(dimensions).also { rawBoundaryMap[dimensions] = it }
-        } else rawBoundaryMap[dimensions]!!
-    }
+    fun generate(dimensions: Int): RawBoundaryType =
+        rawBoundaryMap[dimensions] ?: rawBoundary(dimensions).also { rawBoundaryMap[dimensions] = it }
 
-    private fun rawBoundaryInternal(dimensions: Int) = (0..<(1 shl dimensions))
+    private fun rawBoundary(dimensions: Int) = (0..<(1 shl dimensions))
         .map { Integer.toBinaryString(it) }
         .map { binaryString -> binaryString
             .map { it == '1' }
             .leftPadding(size = dimensions - binaryString.length)
         }
 
-    private fun List<Boolean>.leftPadding(size: Int) = MutableList(size) { false }.plus(this)
+    private fun List<Boolean>.leftPadding(size: Int) = MutableList(size) { false } + this
 }
 
 internal typealias RawBoundaryType = List<List<Boolean>>
