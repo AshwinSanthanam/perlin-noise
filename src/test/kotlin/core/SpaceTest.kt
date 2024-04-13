@@ -4,6 +4,7 @@ import core.point.SpatialData1D
 import core.space.Space
 import core.point.SpatialData2D
 import core.point.SpatialData3D
+import core.space.RawBoundary
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -123,6 +124,62 @@ class SpaceTest {
                     SpatialData3D(x = 4, y = 7, z = 7)
                 ), space.boundaries
             )
+        }
+    }
+
+    @Nested
+    inner class RawBoundaryTest {
+        @Test
+        fun `should return the respective raw boundary for 1 dimension`() {
+            assertEquals(listOf(listOf(false), listOf(true)), RawBoundary.generate(1))
+        }
+
+        @Test
+        fun `should return the respective raw boundary for 2 dimension`() {
+            assertEquals(listOf(
+                listOf(false, false),
+                listOf(false, true),
+                listOf(true, false),
+                listOf(true, true),
+            ), RawBoundary.generate(2))
+        }
+
+        @Test
+        fun `should return the respective raw boundary for 3 dimension`() {
+            assertEquals(listOf(
+                listOf(false, false, false),
+                listOf(false, false, true),
+                listOf(false, true, false),
+                listOf(false, true, true),
+                listOf(true, false, false),
+                listOf(true, false, true),
+                listOf(true, true, false),
+                listOf(true, true, true)
+            ), RawBoundary.generate(3))
+        }
+
+        @Test
+        fun `raw boundary cache test`() {
+            repeat(2) {
+                assertEquals(listOf(listOf(false), listOf(true)), RawBoundary.generate(1))
+            }
+
+            repeat(2) {
+                assertEquals(listOf(
+                    listOf(false, false),
+                    listOf(false, true),
+                    listOf(true, false),
+                    listOf(true, true),
+                ), RawBoundary.generate(2))
+            }
+
+            assertEquals(listOf(listOf(false), listOf(true)), RawBoundary.generate(1))
+            assertEquals(listOf(
+                listOf(false, false),
+                listOf(false, true),
+                listOf(true, false),
+                listOf(true, true),
+            ), RawBoundary.generate(2))
         }
     }
 }

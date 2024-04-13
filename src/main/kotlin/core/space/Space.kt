@@ -20,8 +20,8 @@ data class Space<T> (
         }
     }
 
-    private fun boundaries(): List<T> = rawBoundaries(size)
-        .map { rawBoundaries -> rawBoundaries
+    private fun boundaries(): List<T> = RawBoundary.generate(size)
+        .map { rawBoundary -> rawBoundary
             .zip(dimension.data)
             .map {
                 if (it.first) it.second
@@ -33,8 +33,18 @@ data class Space<T> (
             .map { it.first + it.second }
         }
         .map { SpatialData.spatialDataFactory(it) }
+}
 
-    private fun rawBoundaries(dimensions: Int) = (0..<(1 shl dimensions))
+internal object RawBoundary {
+    private val rawBoundaryMap = HashMap<Int, RawBoundaryType>()
+
+    fun generate(dimensions: Int): RawBoundaryType {
+        return if (!rawBoundaryMap.containsKey(dimensions)) {
+            rawBoundaryInternal(dimensions).also { rawBoundaryMap[dimensions] = it }
+        } else rawBoundaryMap[dimensions]!!
+    }
+
+    private fun rawBoundaryInternal(dimensions: Int) = (0..<(1 shl dimensions))
         .map { Integer.toBinaryString(it) }
         .map { binaryString -> binaryString
             .map { it == '1' }
@@ -42,5 +52,6 @@ data class Space<T> (
         }
 
     private fun List<Boolean>.leftPadding(size: Int) = MutableList(size) { false }.plus(this)
-
 }
+
+internal typealias RawBoundaryType = List<List<Boolean>>
