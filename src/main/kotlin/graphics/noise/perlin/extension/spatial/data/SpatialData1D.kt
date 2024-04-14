@@ -4,6 +4,6 @@ import graphics.noise.perlin.core.SpatialData
 
 data class SpatialData1D(
     val x: Int
-) : SpatialData {
+) : SpatialData() {
     override val data = arrayOf(x)
 }

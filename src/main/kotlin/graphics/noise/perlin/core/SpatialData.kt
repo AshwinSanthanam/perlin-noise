@@ -4,8 +4,14 @@ import graphics.noise.perlin.extension.spatial.data.SpatialData1D
 import graphics.noise.perlin.extension.spatial.data.SpatialData2D
 import graphics.noise.perlin.extension.spatial.data.SpatialData3D
 
-interface SpatialData {
-    val data: Array<Int>
+abstract class SpatialData : Iterable<Int> {
+    protected abstract val data: Array<Int>
+
+    val size get() = data.size
+
+    override fun iterator(): Iterator<Int> = data.iterator()
+
+    operator fun get(index: Int): Int = data[index]
 
     companion object {
         @Suppress("UNCHECKED_CAST")

@@ -5,6 +5,6 @@ import graphics.noise.perlin.core.SpatialData
 data class SpatialData2D(
     val x: Int,
     val y: Int
-) : SpatialData {
+) : SpatialData() {
     override val data = arrayOf(x, y)
 }

@@ -5,7 +5,7 @@ class GradientVectors<SpatialDataType>(
     private val numberGenerator: () -> Int
 ) : Iterable<SpatialDataType> where SpatialDataType : SpatialData {
 
-    private val size = 1 shl dimension.data.size
+    private val size = 1 shl dimension.size
 
     private var currentIndex = 0
 
@@ -13,6 +13,6 @@ class GradientVectors<SpatialDataType>(
         override fun hasNext(): Boolean = currentIndex < size
 
         override fun next(): SpatialDataType =
-            SpatialData.factory<SpatialDataType>(MutableList(dimension.data.size) { numberGenerator.invoke() }).also { currentIndex++ }
+            SpatialData.factory<SpatialDataType>(MutableList(dimension.size) { numberGenerator.invoke() }).also { currentIndex++ }
     }
 }
