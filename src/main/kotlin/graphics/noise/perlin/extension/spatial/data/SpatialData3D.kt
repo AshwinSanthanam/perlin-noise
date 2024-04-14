@@ -1,4 +1,6 @@
-package core.point
+package graphics.noise.perlin.extension.spatial.data
+
+import graphics.noise.perlin.core.SpatialData
 
 data class SpatialData3D(
     val x: Int,

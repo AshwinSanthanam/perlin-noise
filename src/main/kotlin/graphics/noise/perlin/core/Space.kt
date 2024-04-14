@@ -1,6 +1,4 @@
-package core.space
-
-import core.point.SpatialData
+package graphics.noise.perlin.core
 
 class Space<T>(
     private val dimension: T

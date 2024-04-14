@@ -1,10 +1,10 @@
-package core
+package graphics.noise.perlin.core
 
-import core.point.SpatialData1D
-import core.point.SpatialData2D
-import core.point.SpatialData3D
-import core.space.Space
-import core.space.SpaceCache
+import graphics.noise.perlin.extension.spatial.data.SpatialData1D
+import graphics.noise.perlin.extension.spatial.data.SpatialData2D
+import graphics.noise.perlin.extension.spatial.data.SpatialData3D
+import graphics.noise.perlin.core.Space
+import graphics.noise.perlin.core.SpaceCache
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
