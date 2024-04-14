@@ -16,19 +16,14 @@ class Space<T>(
             points(axis = axis + 1, coordinates = coordinates + it)
         }
 
-    private fun boundary(): List<T> = (0..<(1 shl dimension.data.size))
+    private fun boundary(): List<T> = (0..<(1 shl dimension.data.size)).asSequence()
         .map { Integer.toBinaryString(it) }
-        .map { binaryString -> binaryString
-            .map { it == '1' }
-            .leftPadding(size = dimension.data.size - binaryString.length)
-        }.map { rawBoundary -> rawBoundary
-            .zip(dimension.data)
-            .map {
-                if (it.first) it.second
-                else 0
-            }
-        }
-        .map { SpatialData.factory(it) }
+        .map { it.map { char -> char == '1' } }
+        .map { it.leftPadding(size = dimension.data.size - it.size) }
+        .map { it.zip(dimension.data) }
+        .map { it.map { pair -> if (pair.first) pair.second else 0 } }
+        .map { SpatialData.factory<T>(it) }
+        .toList()
 
     private fun List<Boolean>.leftPadding(size: Int) = MutableList(size) { false } + this
 }
