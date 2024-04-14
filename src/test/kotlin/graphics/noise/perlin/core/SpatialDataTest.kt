@@ -24,19 +24,4 @@ class SpatialDataTest {
         val spatialData3D: SpatialData = SpatialData3D(x = 1, y = 2, z = 3)
         assertEquals(listOf(1, 2, 3), spatialData3D.toList())
     }
-
-    @Test
-    fun `should return SpatialData1D`() {
-        assertEquals(SpatialData1D(x = 1), SpatialData.factory(listOf(1)))
-    }
-
-    @Test
-    fun `should return SpatialData2D`() {
-        assertEquals(SpatialData2D(x = 1, y = 2), SpatialData.factory(listOf(1, 2)))
-    }
-
-    @Test
-    fun `should return SpatialData3D`() {
-        assertEquals(SpatialData3D(x = 1, y = 2, z = 3), SpatialData.factory(listOf(1, 2, 3)))
-    }
 }

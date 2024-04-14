@@ -1,6 +1,7 @@
 package graphics.noise.perlin.core
 
 class GradientVectors<SpatialDataType>(
+    private val spatialDataFactory: SpatialDataFactory,
     private val dimension: SpatialDataType,
     private val numberGenerator: () -> Int
 ) : Iterable<SpatialDataType> where SpatialDataType : SpatialData {
@@ -13,6 +14,6 @@ class GradientVectors<SpatialDataType>(
         override fun hasNext(): Boolean = currentIndex < size
 
         override fun next(): SpatialDataType =
-            SpatialData.factory<SpatialDataType>(MutableList(dimension.size) { numberGenerator.invoke() }).also { currentIndex++ }
+            spatialDataFactory.create<SpatialDataType>(MutableList(dimension.size) { numberGenerator.invoke() }).also { currentIndex++ }
     }
 }

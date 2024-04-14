@@ -1,6 +1,7 @@
 package graphics.noise.perlin.core
 
 class Space<T>(
+    private val spatialDataFactory: SpatialDataFactory,
     private val dimension: T
 ) where T : SpatialData {
 
@@ -9,7 +10,7 @@ class Space<T>(
     val boundaries get() = boundary()
 
     private fun points(axis: Int, coordinates: List<Int>): List<SpatialData> =
-        if (axis >= dimension.size) listOf(SpatialData.factory(coordinates))
+        if (axis >= dimension.size) listOf(spatialDataFactory.create(coordinates))
         else (0 ..< dimension[axis]).flatMap {
             points(axis = axis + 1, coordinates = coordinates + it)
         }
@@ -20,7 +21,7 @@ class Space<T>(
         .map { it.leftPadding(size = dimension.size - it.size) }
         .map { it.zip(dimension) }
         .map { it.map { pair -> if (pair.first) pair.second else 0 } }
-        .map { SpatialData.factory<T>(it) }
+        .map { spatialDataFactory.create<T>(it) }
         .toList()
 
     private fun List<Boolean>.leftPadding(size: Int) = MutableList(size) { false } + this
@@ -29,7 +30,6 @@ class Space<T>(
 class SpaceCache<T> where T : SpatialData {
     private val spaceMap = HashMap<T, Space<T>>()
 
-    fun getOrCreate(dimension: T): Space<T> =
-        spaceMap[dimension] ?: Space(dimension).also { spaceMap[dimension] = it  }
+    fun getOrCreate(spatialDataFactory: SpatialDataFactory, dimension: T): Space<T> =
+        spaceMap[dimension] ?: Space(spatialDataFactory, dimension).also { spaceMap[dimension] = it  }
 }
-

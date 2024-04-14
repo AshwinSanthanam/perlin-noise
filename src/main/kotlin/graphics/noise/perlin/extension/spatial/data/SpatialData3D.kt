@@ -7,5 +7,5 @@ data class SpatialData3D(
     val y: Int,
     val z: Int
 ) : SpatialData() {
-    override val data = arrayOf(x, y, z)
+    override val data = listOf(x, y, z)
 }
