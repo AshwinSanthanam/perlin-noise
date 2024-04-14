@@ -2,35 +2,21 @@ package core.space
 
 import core.point.SpatialData
 
-data class Space<T> (val dimension: T) where T : SpatialData {
+class Space<T>(
+    private val dimension: T
+) where T : SpatialData {
 
-    val points get() = Points.generate(dimension)
+    val points get() = points(axis = 0, coordinates = emptyList())
 
-    val boundaries get() = Boundary.generate(dimension)
+    val boundaries get() = boundary()
 
-}
-
-internal object Points {
-    private val pointsMap = HashMap<SpatialData, List<SpatialData>>()
-
-    fun generate(dimension: SpatialData): List<SpatialData> =
-        pointsMap[dimension] ?: generate(dimension = dimension, axis = 0, coordinates = emptyList()).also { pointsMap[dimension] = it }
-
-    private fun generate(dimension: SpatialData, axis: Int, coordinates: List<Int>): List<SpatialData> =
+    private fun points(axis: Int, coordinates: List<Int>): List<SpatialData> =
         if (axis >= dimension.data.size) listOf(SpatialData.factory(coordinates))
         else (0 ..< dimension.data[axis]).flatMap {
-            generate(dimension = dimension, axis = axis + 1, coordinates = coordinates + it)
+            points(axis = axis + 1, coordinates = coordinates + it)
         }
-}
 
-internal object Boundary {
-    private val boundaryMap = HashMap<SpatialData, List<SpatialData>>()
-
-    @Suppress("UNCHECKED_CAST")
-    fun <T> generate(dimension: T): List<T> where T : SpatialData =
-        boundaryMap[dimension] as List<T>? ?: generateInternal<T>(dimension).also { boundaryMap[dimension] = it }
-
-    private fun <T> generateInternal(dimension: SpatialData): List<T> where T : SpatialData = (0..<(1 shl dimension.data.size))
+    private fun boundary(): List<T> = (0..<(1 shl dimension.data.size))
         .map { Integer.toBinaryString(it) }
         .map { binaryString -> binaryString
             .map { it == '1' }
@@ -46,3 +32,11 @@ internal object Boundary {
 
     private fun List<Boolean>.leftPadding(size: Int) = MutableList(size) { false } + this
 }
+
+class SpaceCache<T> where T : SpatialData {
+    private val spaceMap = HashMap<T, Space<T>>()
+
+    fun getOrCreate(dimension: T): Space<T> =
+        spaceMap[dimension] ?: Space(dimension).also { spaceMap[dimension] = it  }
+}
+

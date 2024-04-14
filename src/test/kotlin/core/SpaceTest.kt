@@ -1,10 +1,10 @@
 package core
 
 import core.point.SpatialData1D
-import core.space.Space
 import core.point.SpatialData2D
 import core.point.SpatialData3D
-import core.space.Boundary
+import core.space.Space
+import core.space.SpaceCache
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -73,21 +73,6 @@ class SpaceTest {
                 ), space.points
             )
         }
-
-        @Test
-        fun `points cache test`() {
-            repeat(2) {
-                `should return all points in the 1D space`()
-            }
-
-            repeat(2) {
-                `should return all points in the 2D space`()
-            }
-
-            repeat(2) {
-                `should return all points in the 3D space`()
-            }
-        }
     }
 
     @Nested
@@ -125,20 +110,24 @@ class SpaceTest {
                 ), space.boundaries
             )
         }
+    }
+
+    @Nested
+    inner class SpaceCacheTest {
+        @Test
+        fun `should cache space objects based on dimensions for 1D space`() {
+            val spaceCache = SpaceCache<SpatialData1D>()
+
+            assertEquals(spaceCache.getOrCreate(SpatialData1D(x = 1)), spaceCache.getOrCreate(SpatialData1D(x = 1)))
+            assertEquals(spaceCache.getOrCreate(SpatialData1D(x = 2)), spaceCache.getOrCreate(SpatialData1D(x = 2)))
+        }
 
         @Test
-        fun `boundary cache test`() {
-            repeat(2) {
-                `should return all the boundaries of 1D space`()
-            }
+        fun `should cache space objects based on dimensions for 2D space`() {
+            val spaceCache = SpaceCache<SpatialData2D>()
 
-            repeat(2) {
-                `should return all the boundaries of 2D space`()
-            }
-
-            repeat(2) {
-                `should return all the boundaries of 3D space`()
-            }
+            assertEquals(spaceCache.getOrCreate(SpatialData2D(x = 1, y = 1)), spaceCache.getOrCreate(SpatialData2D(x = 1, y = 1)))
+            assertEquals(spaceCache.getOrCreate(SpatialData2D(x = 2, y = 2)), spaceCache.getOrCreate(SpatialData2D(x = 2, y = 2)))
         }
     }
 }
