@@ -39,4 +39,21 @@ class SpatialDataTest {
             z = Coordinate(0)
         )
     }
+
+    @Test
+    fun `should divide spatial data`() {
+        SpatialData3D(
+            x = Coordinate(1),
+            y = Coordinate(2),
+            z = Coordinate(3)
+        ) / SpatialData3D(
+            x = Coordinate(5),
+            y = Coordinate(2),
+            z = Coordinate(2)
+        ) shouldBe SpatialData3D(
+            x = Coordinate(0.2),
+            y = Coordinate(1),
+            z = Coordinate(1.5)
+        )
+    }
 }

@@ -15,6 +15,8 @@ abstract class SpatialData : Iterable<Coordinate> {
 
     infix operator fun times(other: SpatialData): SpatialData = spatialBinaryOperation(other, Coordinate::times)
 
+    infix operator fun div(other: SpatialData): SpatialData = spatialBinaryOperation(other, Coordinate::div)
+
     private fun spatialBinaryOperation(other: SpatialData, coordinateBinaryOperation: (Coordinate, Coordinate) -> Coordinate): SpatialData =
         this.zip(other).map { coordinateBinaryOperation.invoke(it.first, it.second) }.let { breed(it) }
 }
