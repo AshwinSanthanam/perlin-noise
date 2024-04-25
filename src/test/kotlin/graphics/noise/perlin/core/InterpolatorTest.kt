@@ -8,17 +8,17 @@ class InterpolatorTest {
     @Test
     fun `should interpolate 3D spatial data`() {
         Interpolator<SpatialData3D>().interpolate(
-            position = SpatialData3D(x = Coordinate(0.5), y = Coordinate(0.2), z = Coordinate(0.7)),
+            position = SpatialData3D(x = 0.5, y = 0.2, z = 0.7),
             boundaries = listOf(
-                Coordinate(0),
-                Coordinate(10),
-                Coordinate(20),
-                Coordinate(30),
-                Coordinate(50),
-                Coordinate(60),
-                Coordinate(70),
-                Coordinate(80)
+                0.0,
+                10.0,
+                20.0,
+                30.0,
+                50.0,
+                60.0,
+                70.0,
+                80.0
             )
-        ) shouldBe Coordinate(44)
+        ) shouldBe 44.0
     }
 }

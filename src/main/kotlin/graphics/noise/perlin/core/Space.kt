@@ -12,9 +12,9 @@ class Space<T>(
     fun relative(point: T): T = (point / dimension) as T
 
     @Suppress("UNCHECKED_CAST")
-    private fun points(axis: Int, coordinates: List<Coordinate>): List<T> =
+    private fun points(axis: Int, coordinates: List<Double>): List<T> =
         if (axis >= dimension.size) listOf(dimension.breed(coordinates) as T)
-        else (Coordinate.ORIGIN ..< dimension[axis]).flatMap {
+        else (0 ..< dimension[axis].toInt()).map(Int::toDouble).flatMap {
             points(axis = axis + 1, coordinates = coordinates + it)
         }
 
@@ -24,7 +24,7 @@ class Space<T>(
         .map { it.map { char -> char == '1' } }
         .map { it.leftPadding(size = dimension.size - it.size) }
         .map { it.zip(dimension) }
-        .map { it.map { pair -> if (pair.first) pair.second else Coordinate.ORIGIN } }
+        .map { it.map { pair -> if (pair.first) pair.second else 0.0 } }
         .map { dimension.breed(it) as T }
         .toList()
 

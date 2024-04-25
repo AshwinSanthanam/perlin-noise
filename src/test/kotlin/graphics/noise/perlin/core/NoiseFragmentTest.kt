@@ -12,16 +12,16 @@ import kotlin.math.roundToInt
 class NoiseFragmentTest {
     @Test
     fun `generate Image`() {
-        val dimension = SpatialData2D(x = Coordinate(5), y = Coordinate(5))
+        val dimension = SpatialData2D(x = 5.0, y = 5.0)
         val space = Space(dimension)
         val noise = NoiseFragment(
             space = space,
             interpolator = Interpolator(),
             gradientVectors = listOf(
-                SpatialData2D(x = Coordinate(0), y = Coordinate(1)),
-                SpatialData2D(x = Coordinate(0), y = Coordinate(-1)),
-                SpatialData2D(x = Coordinate(-1), y = Coordinate(0)),
-                SpatialData2D(x = Coordinate(-1), y = Coordinate(0))
+                SpatialData2D(x = 0.0, y = 1.0),
+                SpatialData2D(x = 0.0, y = -1.0),
+                SpatialData2D(x = -1.0, y = 0.0),
+                SpatialData2D(x = -1.0, y = 0.0)
             )
         ).noise()
 
@@ -55,11 +55,11 @@ class NoiseFragmentTest {
     }
 
     private fun createImage(noise: List<Double>, dimension: SpatialData2D, space: Space<SpatialData2D>) {
-        val image = BufferedImage(dimension.x.value.toInt(), dimension.y.value.toInt(), BufferedImage.TYPE_BYTE_GRAY)
+        val image = BufferedImage(dimension.x.toInt(), dimension.y.toInt(), BufferedImage.TYPE_BYTE_GRAY)
         noise.zip(space.points).forEach {
             val (value, spatialData) = it
             val color = (value * 255).roundToInt()
-            image.setRGB(spatialData.x.value.toInt(), spatialData.y.value.toInt(), Color(color, color, color).rgb)
+            image.setRGB(spatialData.x.toInt(), spatialData.y.toInt(), Color(color, color, color).rgb)
         }
         ImageIO.write(image, "jpg", File("build/noise.jpg"))
     }
