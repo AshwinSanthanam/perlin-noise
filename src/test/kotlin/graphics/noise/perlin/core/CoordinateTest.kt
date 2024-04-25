@@ -34,4 +34,9 @@ class CoordinateTest {
     fun `should multiply value`() {
         Coordinate(3) * Coordinate(7) shouldBe Coordinate(21)
     }
+
+    @Test
+    fun `should divide value`() {
+        Coordinate(5) / Coordinate(2) shouldBe Coordinate(2.5)
+    }
 }

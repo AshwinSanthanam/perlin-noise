@@ -13,6 +13,8 @@ data class Coordinate(val value: Double) {
 
     infix operator fun times(other: Coordinate): Coordinate = Coordinate(this.value * other.value)
 
+    infix operator fun div(other: Coordinate): Coordinate = Coordinate(this.value / other.value)
+
     companion object {
         val ORIGIN get() = Coordinate(0.0)
     }
