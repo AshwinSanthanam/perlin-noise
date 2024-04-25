@@ -13,7 +13,7 @@ abstract class SpatialData : Iterable<Coordinate> {
 
     infix operator fun minus(other: SpatialData): SpatialData = spatialBinaryOperation(other, Coordinate::minus)
 
-    infix operator fun times(other: SpatialData): SpatialData = spatialBinaryOperation(other, Coordinate::times)
+    infix operator fun times(other: SpatialData): Coordinate = spatialBinaryOperation(other, Coordinate::times).reduce(Coordinate::plus)
 
     infix operator fun div(other: SpatialData): SpatialData = spatialBinaryOperation(other, Coordinate::div)
 

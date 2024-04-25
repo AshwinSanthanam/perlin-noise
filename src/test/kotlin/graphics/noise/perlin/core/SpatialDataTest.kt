@@ -33,11 +33,7 @@ class SpatialDataTest {
             x = Coordinate(5),
             y = Coordinate(2),
             z = Coordinate(0)
-        ) shouldBe SpatialData3D(
-            x = Coordinate(5),
-            y = Coordinate(4),
-            z = Coordinate(0)
-        )
+        ) shouldBe Coordinate(9)
     }
 
     @Test
