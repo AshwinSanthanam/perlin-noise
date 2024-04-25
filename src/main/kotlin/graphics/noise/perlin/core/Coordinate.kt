@@ -7,6 +7,8 @@ data class Coordinate(val value: Double) {
         return (this.value.toInt() ..< other.value.toInt()).map { Coordinate(it) }
     }
 
+    infix operator fun plus(other: Coordinate): Coordinate = Coordinate(this.value + other.value)
+
     infix operator fun minus(other: Coordinate): Coordinate = Coordinate(this.value - other.value)
 
     infix operator fun times(other: Coordinate): Coordinate = Coordinate(this.value * other.value)

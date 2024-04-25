@@ -21,6 +21,11 @@ class CoordinateTest {
     }
 
     @Test
+    fun `should add value`() {
+        Coordinate(5) + Coordinate(10) shouldBe Coordinate(15)
+    }
+
+    @Test
     fun `should subtract value`() {
         Coordinate(5) - Coordinate(10) shouldBe Coordinate(-5)
     }
