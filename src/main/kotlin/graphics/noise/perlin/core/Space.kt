@@ -8,9 +8,9 @@ class Space<T>(
 
     val boundaries get() = boundary()
 
-    private fun points(axis: Int, coordinates: List<Int>): List<SpatialData> =
+    private fun points(axis: Int, coordinates: List<Coordinate>): List<SpatialData> =
         if (axis >= dimension.size) listOf(dimension.breed(coordinates))
-        else (0 ..< dimension[axis]).flatMap {
+        else (Coordinate.ORIGIN ..< dimension[axis]).flatMap {
             points(axis = axis + 1, coordinates = coordinates + it)
         }
 
@@ -20,7 +20,7 @@ class Space<T>(
         .map { it.map { char -> char == '1' } }
         .map { it.leftPadding(size = dimension.size - it.size) }
         .map { it.zip(dimension) }
-        .map { it.map { pair -> if (pair.first) pair.second else 0 } }
+        .map { it.map { pair -> if (pair.first) pair.second else Coordinate.ORIGIN } }
         .map { dimension.breed(it) as T }
         .toList()
 

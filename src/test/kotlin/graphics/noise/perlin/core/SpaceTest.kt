@@ -13,61 +13,61 @@ class SpaceTest {
     inner class PointsTest {
         @Test
         fun `should return all points in the 1D space`() {
-            val space = Space(dimension = SpatialData1D(x = 5))
-            assertEquals(listOf(SpatialData1D(x = 0), SpatialData1D(x = 1), SpatialData1D(x = 2), SpatialData1D(x = 3), SpatialData1D(x = 4)), space.points)
+            val space = Space(dimension = SpatialData1D(x = Coordinate(5)))
+            assertEquals(listOf(SpatialData1D(x = Coordinate(0)), SpatialData1D(x = Coordinate(1)), SpatialData1D(x = Coordinate(2)), SpatialData1D(x = Coordinate(3)), SpatialData1D(x = Coordinate(4))), space.points)
         }
 
         @Test
         fun `should return all points in the 2D space`() {
-            val space = Space(dimension = SpatialData2D(x = 3, y = 5))
+            val space = Space(dimension = SpatialData2D(x = Coordinate(3), y = Coordinate(5)))
             assertEquals(listOf(
-                SpatialData2D(x = 0, y = 0),
-                SpatialData2D(x = 0, y = 1),
-                SpatialData2D(x = 0, y = 2),
-                SpatialData2D(x = 0, y = 3),
-                SpatialData2D(x = 0, y = 4),
-                SpatialData2D(x = 1, y = 0),
-                SpatialData2D(x = 1, y = 1),
-                SpatialData2D(x = 1, y = 2),
-                SpatialData2D(x = 1, y = 3),
-                SpatialData2D(x = 1, y = 4),
-                SpatialData2D(x = 2, y = 0),
-                SpatialData2D(x = 2, y = 1),
-                SpatialData2D(x = 2, y = 2),
-                SpatialData2D(x = 2, y = 3),
-                SpatialData2D(x = 2, y = 4)
+                SpatialData2D(x = Coordinate(0), y = Coordinate(0)),
+                SpatialData2D(x = Coordinate(0), y = Coordinate(1)),
+                SpatialData2D(x = Coordinate(0), y = Coordinate(2)),
+                SpatialData2D(x = Coordinate(0), y = Coordinate(3)),
+                SpatialData2D(x = Coordinate(0), y = Coordinate(4)),
+                SpatialData2D(x = Coordinate(1), y = Coordinate(0)),
+                SpatialData2D(x = Coordinate(1), y = Coordinate(1)),
+                SpatialData2D(x = Coordinate(1), y = Coordinate(2)),
+                SpatialData2D(x = Coordinate(1), y = Coordinate(3)),
+                SpatialData2D(x = Coordinate(1), y = Coordinate(4)),
+                SpatialData2D(x = Coordinate(2), y = Coordinate(0)),
+                SpatialData2D(x = Coordinate(2), y = Coordinate(1)),
+                SpatialData2D(x = Coordinate(2), y = Coordinate(2)),
+                SpatialData2D(x = Coordinate(2), y = Coordinate(3)),
+                SpatialData2D(x = Coordinate(2), y = Coordinate(4))
             ), space.points)
         }
 
         @Test
         fun `should return all points in the 3D space`() {
-            val space = Space(dimension = SpatialData3D(x = 2, y = 3, z = 4))
+            val space = Space(dimension = SpatialData3D(x = Coordinate(2), y = Coordinate(3), z = Coordinate(4)))
             assertEquals(
                 listOf(
-                    SpatialData3D(x = 0, y = 0, z = 0),
-                    SpatialData3D(x = 0, y = 0, z = 1),
-                    SpatialData3D(x = 0, y = 0, z = 2),
-                    SpatialData3D(x = 0, y = 0, z = 3),
-                    SpatialData3D(x = 0, y = 1, z = 0),
-                    SpatialData3D(x = 0, y = 1, z = 1),
-                    SpatialData3D(x = 0, y = 1, z = 2),
-                    SpatialData3D(x = 0, y = 1, z = 3),
-                    SpatialData3D(x = 0, y = 2, z = 0),
-                    SpatialData3D(x = 0, y = 2, z = 1),
-                    SpatialData3D(x = 0, y = 2, z = 2),
-                    SpatialData3D(x = 0, y = 2, z = 3),
-                    SpatialData3D(x = 1, y = 0, z = 0),
-                    SpatialData3D(x = 1, y = 0, z = 1),
-                    SpatialData3D(x = 1, y = 0, z = 2),
-                    SpatialData3D(x = 1, y = 0, z = 3),
-                    SpatialData3D(x = 1, y = 1, z = 0),
-                    SpatialData3D(x = 1, y = 1, z = 1),
-                    SpatialData3D(x = 1, y = 1, z = 2),
-                    SpatialData3D(x = 1, y = 1, z = 3),
-                    SpatialData3D(x = 1, y = 2, z = 0),
-                    SpatialData3D(x = 1, y = 2, z = 1),
-                    SpatialData3D(x = 1, y = 2, z = 2),
-                    SpatialData3D(x = 1, y = 2, z = 3)
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(0), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(0), z = Coordinate(1)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(0), z = Coordinate(2)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(0), z = Coordinate(3)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(1), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(1), z = Coordinate(1)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(1), z = Coordinate(2)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(1), z = Coordinate(3)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(2), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(2), z = Coordinate(1)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(2), z = Coordinate(2)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(2), z = Coordinate(3)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(0), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(0), z = Coordinate(1)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(0), z = Coordinate(2)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(0), z = Coordinate(3)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(1), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(1), z = Coordinate(1)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(1), z = Coordinate(2)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(1), z = Coordinate(3)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(2), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(2), z = Coordinate(1)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(2), z = Coordinate(2)),
+                    SpatialData3D(x = Coordinate(1), y = Coordinate(2), z = Coordinate(3))
                 ), space.points
             )
         }
@@ -77,34 +77,34 @@ class SpaceTest {
     inner class BoundaryTest {
         @Test
         fun `should return all the boundaries of 1D space`() {
-            val space = Space(dimension = SpatialData1D(x = 5))
-            assertEquals(listOf(SpatialData1D(x = 0), SpatialData1D(x = 5)), space.boundaries)
+            val space = Space(dimension = SpatialData1D(x = Coordinate(5)))
+            assertEquals(listOf(SpatialData1D(x = Coordinate(0)), SpatialData1D(x = Coordinate(5))), space.boundaries)
         }
 
         @Test
         fun `should return all the boundaries of 2D space`() {
-            val space = Space(dimension = SpatialData2D(x = 3, y = 5))
+            val space = Space(dimension = SpatialData2D(x = Coordinate(3), y = Coordinate(5)))
             assertEquals(listOf(
-                SpatialData2D(x = 0, y = 0),
-                SpatialData2D(x = 0, y = 5),
-                SpatialData2D(x = 3, y = 0),
-                SpatialData2D(x = 3, y = 5)
+                SpatialData2D(x = Coordinate(0), y = Coordinate(0)),
+                SpatialData2D(x = Coordinate(0), y = Coordinate(5)),
+                SpatialData2D(x = Coordinate(3), y = Coordinate(0)),
+                SpatialData2D(x = Coordinate(3), y = Coordinate(5))
             ), space.boundaries)
         }
 
         @Test
         fun `should return all the boundaries of 3D space`() {
-            val space = Space(dimension = SpatialData3D(x = 3, y = 5, z = 4))
+            val space = Space(dimension = SpatialData3D(x = Coordinate(3), y = Coordinate(5), z = Coordinate(4)))
             assertEquals(
                 listOf(
-                    SpatialData3D(x = 0, y = 0, z = 0),
-                    SpatialData3D(x = 0, y = 0, z = 4),
-                    SpatialData3D(x = 0, y = 5, z = 0),
-                    SpatialData3D(x = 0, y = 5, z = 4),
-                    SpatialData3D(x = 3, y = 0, z = 0),
-                    SpatialData3D(x = 3, y = 0, z = 4),
-                    SpatialData3D(x = 3, y = 5, z = 0),
-                    SpatialData3D(x = 3, y = 5, z = 4)
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(0), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(0), z = Coordinate(4)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(5), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(0), y = Coordinate(5), z = Coordinate(4)),
+                    SpatialData3D(x = Coordinate(3), y = Coordinate(0), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(3), y = Coordinate(0), z = Coordinate(4)),
+                    SpatialData3D(x = Coordinate(3), y = Coordinate(5), z = Coordinate(0)),
+                    SpatialData3D(x = Coordinate(3), y = Coordinate(5), z = Coordinate(4))
                 ), space.boundaries
             )
         }
@@ -117,12 +117,12 @@ class SpaceTest {
             val spaceCache = SpaceCache<SpatialData1D>()
 
             assertEquals(
-                spaceCache.getOrCreate(SpatialData1D(x = 1)),
-                spaceCache.getOrCreate(SpatialData1D(x = 1))
+                spaceCache.getOrCreate(SpatialData1D(x = Coordinate(1))),
+                spaceCache.getOrCreate(SpatialData1D(x = Coordinate(1)))
             )
             assertEquals(
-                spaceCache.getOrCreate(SpatialData1D(x = 2)),
-                spaceCache.getOrCreate(SpatialData1D(x = 2))
+                spaceCache.getOrCreate(SpatialData1D(x = Coordinate(2))),
+                spaceCache.getOrCreate(SpatialData1D(x = Coordinate(2)))
             )
         }
 
@@ -131,12 +131,12 @@ class SpaceTest {
             val spaceCache = SpaceCache<SpatialData2D>()
 
             assertEquals(
-                spaceCache.getOrCreate(SpatialData2D(x = 1, y = 1)),
-                spaceCache.getOrCreate(SpatialData2D(x = 1, y = 1))
+                spaceCache.getOrCreate(SpatialData2D(x = Coordinate(1), y = Coordinate(1))),
+                spaceCache.getOrCreate(SpatialData2D(x = Coordinate(1), y = Coordinate(1)))
             )
             assertEquals(
-                spaceCache.getOrCreate(SpatialData2D(x = 2, y = 2)),
-                spaceCache.getOrCreate(SpatialData2D(x = 2, y = 2))
+                spaceCache.getOrCreate(SpatialData2D(x = Coordinate(2), y = Coordinate(2))),
+                spaceCache.getOrCreate(SpatialData2D(x = Coordinate(2), y = Coordinate(2)))
             )
         }
     }
