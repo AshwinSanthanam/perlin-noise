@@ -11,8 +11,9 @@ class Space<T>(
     @Suppress("UNCHECKED_CAST")
     fun relative(point: T): T = (point / dimension) as T
 
-    private fun points(axis: Int, coordinates: List<Coordinate>): List<SpatialData> =
-        if (axis >= dimension.size) listOf(dimension.breed(coordinates))
+    @Suppress("UNCHECKED_CAST")
+    private fun points(axis: Int, coordinates: List<Coordinate>): List<T> =
+        if (axis >= dimension.size) listOf(dimension.breed(coordinates) as T)
         else (Coordinate.ORIGIN ..< dimension[axis]).flatMap {
             points(axis = axis + 1, coordinates = coordinates + it)
         }
