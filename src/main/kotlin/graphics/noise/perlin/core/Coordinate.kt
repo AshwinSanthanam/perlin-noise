@@ -8,6 +8,6 @@ data class Coordinate(val value: Double) {
     }
 
     companion object {
-        public val ORIGIN get() = Coordinate(0.0)
+        val ORIGIN get() = Coordinate(0.0)
     }
 }
