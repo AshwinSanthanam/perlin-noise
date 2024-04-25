@@ -11,8 +11,8 @@ class NoiseFragment<T : SpatialData>(
             val dotProducts = distanceVectors.zip(gradientVectors).map { it.first * it.second }
             interpolator.interpolate(space.relative(point), dotProducts).value
         }
-        val min = noise.minOf { it }
-        val max = noise.maxOf { it }
+        val min = noise.min()
+        val max = noise.max()
         return noise.map { (it - min) / (max - min) }
     }
 }
