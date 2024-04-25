@@ -8,6 +8,9 @@ class Space<T>(
 
     val boundaries get() = boundary()
 
+    @Suppress("UNCHECKED_CAST")
+    fun relative(point: T): T = (point / dimension) as T
+
     private fun points(axis: Int, coordinates: List<Coordinate>): List<SpatialData> =
         if (axis >= dimension.size) listOf(dimension.breed(coordinates))
         else (Coordinate.ORIGIN ..< dimension[axis]).flatMap {

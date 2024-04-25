@@ -9,6 +9,15 @@ import org.junit.jupiter.api.Test
 
 class SpaceTest {
 
+    @Test
+    fun `should return the relative position`() {
+        val space = Space(SpatialData3D(x = Coordinate(10), y = Coordinate(10), z = Coordinate(10)))
+
+        val relativePoint = space.relative(SpatialData3D(x = Coordinate(3), y = Coordinate(4), z = Coordinate(5)))
+
+        relativePoint shouldBe SpatialData3D(x = Coordinate(0.3), y = Coordinate(0.4), z = Coordinate(0.5))
+    }
+
     @Nested
     inner class PointsTest {
         @Test
