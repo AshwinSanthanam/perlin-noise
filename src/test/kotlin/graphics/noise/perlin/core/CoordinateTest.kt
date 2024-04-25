@@ -19,4 +19,14 @@ class CoordinateTest {
     fun `should return the origin`() {
         Coordinate(0.0) shouldBe Coordinate.ORIGIN
     }
+
+    @Test
+    fun `should subtract value`() {
+        Coordinate(5) - Coordinate(10) shouldBe Coordinate(-5)
+    }
+
+    @Test
+    fun `should multiply value`() {
+        Coordinate(3) * Coordinate(7) shouldBe Coordinate(21)
+    }
 }
