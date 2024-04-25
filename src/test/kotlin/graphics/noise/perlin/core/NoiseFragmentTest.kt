@@ -16,14 +16,13 @@ class NoiseFragmentTest {
         val space = Space(dimension)
         val noise = NoiseFragment(
             space = space,
-            interpolator = Interpolator(),
-            gradientVectors = listOf(
-                SpatialData2D(x = 0.0, y = 1.0),
-                SpatialData2D(x = 0.0, y = -1.0),
-                SpatialData2D(x = -1.0, y = 0.0),
-                SpatialData2D(x = -1.0, y = 0.0)
-            )
-        ).noise()
+            interpolator = Interpolator()
+        ).noise(gradientVectors = listOf(
+            SpatialData2D(x = 0.0, y = 1.0),
+            SpatialData2D(x = 0.0, y = -1.0),
+            SpatialData2D(x = -1.0, y = 0.0),
+            SpatialData2D(x = -1.0, y = 0.0)
+        ))
 
         listOf(
             0.0,
